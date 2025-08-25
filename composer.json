@@ -1,0 +1,28 @@
+{
+  "name": "maks/parsers",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Core\\": "core/"
+    },
+    "files": [
+      "helpers/functions.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "Maks",
+      "email": "burka.maksim@gmail.com"
+    }
+  ],
+  "require": {
+    "vlucas/phpdotenv": "^5.6",
+    "larapack/dd": "^1.1",
+    "ext-curl": "*",
+    "nesbot/carbon": "^3.10",
+    "ext-pdo": "*",
+    "fypex/php-query": "dev-master",
+    "ext-simplexml": "*",
+    "ext-dom": "*"
+  }
+}
