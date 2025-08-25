@@ -6,5 +6,6 @@ readonly abstract class Page
 {
     public int $currentPage;
 
-    public abstract function getNexPage(): string;
+    public abstract function getNextPageUrl(): string;
+    public abstract function getPageUrl(): string;
 }

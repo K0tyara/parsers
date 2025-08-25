@@ -15,10 +15,14 @@ final readonly class PageDataDTO extends Page
     {
     }
 
-    public function getNexPage(): string
+    public function getPageUrl(): string
     {
-        $nextPage = $this->currentPage + 1;
-        return str_replace('%PAGE%', $nextPage, TechnoRezefCom::PREG_SEARCH);
+        return str_replace('%PAGE%', $this->currentPage, TechnoRezefCom::PREG_SEARCH);
+    }
+
+    public function getNextPageUrl(): string
+    {
+        return str_replace('%PAGE%', $this->currentPage + 1, TechnoRezefCom::PREG_SEARCH);
     }
 
     public function toArray(): array
@@ -38,4 +42,5 @@ final readonly class PageDataDTO extends Page
             $data['total_page'],
         );
     }
+
 }

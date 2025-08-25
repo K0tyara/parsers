@@ -8,7 +8,7 @@ use App\Enums\ParserList;
 
 final readonly class ParserFactory
 {
-    public static function make(ParserList $parser): ParserContract
+    public static function make(ParserList $parser): ?ParserContract
     {
         return match ($parser) {
             ParserList::TechnoRezef => TechnoRezefBuilder::build(),

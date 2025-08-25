@@ -43,10 +43,10 @@ final  class Parser implements ParserContract, AuthenticationContract
     public function parseMainPage(Page $page): array
     {
         $response = Http::withHeaders($this->getHeadersWithCookie())
-            ->get($page->getNexPage());
+            ->get($page->getNextPageUrl());
 
         if ($response->status() != 200 || $response->error()) {
-            $this->logger->error("Error parse: {$page->getNexPage()} Error: {$response->error()}");
+            $this->logger->error("Error parse: {$page->getNextPageUrl()} Error: {$response->error()}");
             return [];
         }
 
@@ -109,7 +109,6 @@ final  class Parser implements ParserContract, AuthenticationContract
             phpQuery::unloadDocuments($doc);
         }
     }
-
 
     public function getDefaultPage(): Page
     {

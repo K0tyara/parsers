@@ -12,7 +12,7 @@ final readonly class TechnoRezefBuilder
     public static function build(): ParserContract
     {
         return new Parser(
-            LogFactory::get('techno_rezef')
+            LogFactory::console('techno_rezef')
         );
     }
 }

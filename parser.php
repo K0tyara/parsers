@@ -1,11 +1,11 @@
 <?php
 
 use App\Enums\ParserList;
+use App\Facades\Xaml;
 use App\Factories\ParserFactory;
 use App\Services\ParserService;
 use Core\Facades\FileWriter;
 use Core\Facades\Storage;
-use Core\Facades\Xaml;
 use Core\Log\Factory\LogFactory;
 use Dotenv\Dotenv;
 
@@ -16,10 +16,13 @@ $dotenv->load();
 
 $parserName = ParserList::TechnoRezef;
 $resultStorage = Storage::disk('results');
-$mainLog = LogFactory::get('main', true);
+$mainLog = LogFactory::console('main');
 
 try {
     $parser = ParserFactory::make($parserName);
+    if ($parser == null) {
+        return;
+    }
 
     $parserHandler = new ParserService(
         $parserName->value,
@@ -27,6 +30,7 @@ try {
     );
 
     $products = $parserHandler->parse();
+
     $xaml = Xaml::convert($products->products(), $parser->getFormatter());
 
     if ($xaml) {

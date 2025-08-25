@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Facades;
+namespace App\Facades;
 
 use App\Convectors\XamlConvector;
 use Core\Abstracts\Facade;
