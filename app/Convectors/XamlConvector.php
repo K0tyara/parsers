@@ -9,7 +9,7 @@ use SimpleXMLElement;
 
 class XamlConvector implements XamlConvectorContract
 {
-    public function convert(array $items, ?FormatterContract $formatterContract = null): string
+    public function convert(array $items, string $childKey = 'Product', ?FormatterContract $formatterContract = null): string
     {
         if ($formatterContract != null) {
             $items = $formatterContract->format($items);
@@ -17,7 +17,7 @@ class XamlConvector implements XamlConvectorContract
 
         $xaml = new SimpleXMLElement('<xml></xml>');
         foreach ($items as $product) {
-            $p = $xaml->addChild('Product');
+            $p = $xaml->addChild($childKey);
             if (!is_array($product)) {
                 $product = $product->toArray();
             }

@@ -7,7 +7,7 @@ use Core\Abstracts\Facade;
 use Core\Contracts\Formatters\FormatterContract;
 
 /**
- * @method static string convert(array $items, ?FormatterContract $formatterContract = null): string
+ * @method static string convert(array $items, string $childKey = 'Product', ?FormatterContract $formatterContract = null)
  */
 class Xaml extends Facade
 {

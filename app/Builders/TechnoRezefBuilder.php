@@ -2,17 +2,28 @@
 
 namespace App\Builders;
 
-use App\Contracts\ParserContract;
+use App\Enums\ParserList;
+use App\Services\ParserContainer;
+use App\TechnoRezef\Formatters\XamlFormatter;
 use App\TechnoRezef\Parser;
+use App\TechnoRezef\SaveHandler;
 use Core\Log\Factory\LogFactory;
 
 final readonly class TechnoRezefBuilder
 {
 
-    public static function build(): ParserContract
+    public static function build(): ParserContainer
     {
-        return new Parser(
-            LogFactory::console('techno_rezef')
+        $parserName = ParserList::TechnoRezef;
+        $parser = new Parser(
+            LogFactory::console($parserName->value)
         );
+
+        return new ParserContainer(
+            $parserName,
+            $parser,
+            new SaveHandler(new XamlFormatter())
+        );
+
     }
 }

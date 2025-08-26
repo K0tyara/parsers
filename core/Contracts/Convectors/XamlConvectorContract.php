@@ -8,8 +8,9 @@ interface XamlConvectorContract
 {
     /**
      * @param array $items
+     * @param string $childKey
      * @param FormatterContract|null $formatterContract
      * @return string
      */
-    public function convert(array $items, ?FormatterContract $formatterContract = null): string;
+    public function convert(array $items, string $childKey = 'Product', ?FormatterContract $formatterContract = null): string;
 }
