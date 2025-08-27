@@ -12,6 +12,7 @@ final readonly class ParserContainer
     public function __construct(
         public ParserList                $parserName,
         public ParserContract            $handler,
+        public ParserTimeSleepContainer  $sleepContainer,
         public ParserResultSaverContract $saver
     )
     {

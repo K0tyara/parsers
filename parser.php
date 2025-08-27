@@ -23,7 +23,8 @@ try {
 
     $parserHandler = new ParserService(
         $parserName->value,
-        $container->handler
+        $container->handler,
+        $container->sleepContainer
     );
 
     $container->run($parserHandler);

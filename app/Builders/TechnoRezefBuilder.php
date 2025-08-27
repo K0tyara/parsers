@@ -4,6 +4,7 @@ namespace App\Builders;
 
 use App\Enums\ParserList;
 use App\Services\ParserContainer;
+use App\Services\ParserTimeSleepContainer;
 use App\TechnoRezef\Formatters\XamlFormatter;
 use App\TechnoRezef\Parser;
 use App\TechnoRezef\SaveHandler;
@@ -19,9 +20,11 @@ final readonly class TechnoRezefBuilder
             LogFactory::console($parserName->value)
         );
 
+        $sleepContainer = new ParserTimeSleepContainer();
         return new ParserContainer(
             $parserName,
             $parser,
+            $sleepContainer,
             new SaveHandler(new XamlFormatter())
         );
 

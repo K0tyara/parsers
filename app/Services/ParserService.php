@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Contracts\AuthenticationContract;
 use App\Contracts\ParserContract;
 use App\Contracts\ProductContainerContract;
+use App\Contracts\TimeSleepContainer;
 use LogicException;
 use Throwable;
 
@@ -14,8 +15,9 @@ final readonly class ParserService
     private ProductContainerService $productContainer;
 
     public function __construct(
-        public string          $parserName,
-        private ParserContract $parser
+        public string              $parserName,
+        private ParserContract     $parser,
+        private TimeSleepContainer $sleepManager,
     )
     {
         $this->snapshotService = new PageSnapshotService(
@@ -38,7 +40,7 @@ final readonly class ParserService
 
         do {
             $products = $this->parser->parseMainPage($page);
-
+            $this->sleepManager->sleepAfterParseProductPage();
             if (count($products) == 0) {
                 return $this->productContainer;
             }
@@ -48,6 +50,7 @@ final readonly class ParserService
                 if ($dto) {
                     $this->productContainer->addProduct($dto);
                 }
+                $this->sleepManager->sleepAfterParseProduct();
             }
 
             $page = $this->parser->getNextPage($page);
