@@ -23,7 +23,7 @@ final readonly class SaveHandler implements ParserResultSaverContract
         $resultStorage = Storage::disk('results');
 
         if ($content) {
-            FileWriter::put("{$resultStorage->getDiskPath()}/$name.xml", $content);
+            FileWriter::put("{$resultStorage->getPath()}/$name.xml", $content);
         }
     }
 }

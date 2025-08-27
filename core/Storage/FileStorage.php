@@ -61,7 +61,7 @@ final readonly class FileStorage implements StorageContract
         }
     }
 
-    public function getDiskPath(): string
+    public function getPath(): string
     {
         return $this->path;
     }

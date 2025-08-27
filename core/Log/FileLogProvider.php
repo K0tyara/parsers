@@ -19,7 +19,7 @@ readonly class FileLogProvider implements LogContract
         private StorageContract    $storageContract,
     )
     {
-        $this->path = $this->storageContract->getDiskPath() . "/$this->logName.txt";
+        $this->path = $this->storageContract->getPath() . "/$this->logName.txt";
     }
 
     public function info(string $message): void

@@ -7,7 +7,7 @@ interface StorageContract
 
     public static function disk(string $disk): self;
 
-    public function getDiskPath(): string;
+    public function getPath(): string;
 
     public function isExist(string $path, bool $isDirectory);
 

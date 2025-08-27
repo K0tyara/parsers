@@ -23,7 +23,7 @@ final readonly class PageSnapshotService
     public function createOrUpdateSnapshot(?PageDataDTO $page): void
     {
         FileWriter::put(
-            "{$this->storage->getDiskPath()}/$this->fileName.json",
+            "{$this->storage->getPath()}/$this->fileName.json",
             json_encode($page ? $page->toArray() : [])
         );
     }
@@ -31,7 +31,7 @@ final readonly class PageSnapshotService
     public function loadLastSnapshot(): ?PageDataDTO
     {
         $fileName = "$this->fileName.json";
-        $path = "{$this->storage->getDiskPath()}/$fileName";
+        $path = "{$this->storage->getPath()}/$fileName";
 
         if ($this->storage->isExist($fileName, false)) {
             $data = json_decode(FileReader::read($path), true);
