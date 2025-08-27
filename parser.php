@@ -32,10 +32,10 @@ try {
         $container->sleepContainer
     );
 
+    $mainLog->info("Start parsing.");
     $container->run($parserHandler);
-
+    $mainLog->info("End parsing.");
 
 } catch (Throwable $ex) {
     $mainLog->error($ex);
-    throw  $ex;
 }
