@@ -14,6 +14,8 @@ final readonly class FileStorage implements StorageContract
     {
         if ($disk) {
             $this->path = base_path("storage/$disk");
+        } else {
+            $this->path = base_path();
         }
     }
 

@@ -25,6 +25,7 @@ final class Storage extends Facade
 
     public static function __callStatic($method, $args)
     {
+        //TODO:: ??
         if (!self::$instance) {
             throw new \RuntimeException("Storage disk not initialized. Call Storage::disk('name') first.");
         }
