@@ -13,7 +13,8 @@ final readonly class ParserContainer
         public ParserList                $parserName,
         public ParserContract            $handler,
         public ParserTimeSleepContainer  $sleepContainer,
-        public ParserResultSaverContract $saver
+        public ParserResultSaverContract $saver,
+        public bool                      $withSnapshot = false,
     )
     {
     }

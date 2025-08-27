@@ -18,6 +18,7 @@ final readonly class ParserService
         public string              $parserName,
         private ParserContract     $parser,
         private TimeSleepContainer $sleepManager,
+        private bool               $withSnapshot
     )
     {
         $this->snapshotService = new PageSnapshotService(
@@ -36,7 +37,11 @@ final readonly class ParserService
             throw new LogicException("Error sign in site - $this->parserName");
         }
 
-        $page = $this->snapshotService->loadLastSnapshot() ?? $this->parser->getDefaultPage();
+        if ($this->withSnapshot) {
+            $page = $this->snapshotService->loadLastSnapshot() ?? $this->parser->getDefaultPage();
+        } else {
+            $page = $this->parser->getDefaultPage();
+        }
 
         do {
             $products = $this->parser->parseMainPage($page);

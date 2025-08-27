@@ -29,7 +29,8 @@ try {
     $parserHandler = new ParserService(
         $parserName->value,
         $container->handler,
-        $container->sleepContainer
+        $container->sleepContainer,
+        $container->withSnapshot
     );
 
     $mainLog->info("Start parsing.");

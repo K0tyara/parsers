@@ -59,6 +59,8 @@ final  class Parser implements ParserContract, AuthenticationContract
                 return [];
 
             }
+            $this->logger->info("Complete parse page: $page->currentPage");
+
             return ProductCardMapper::mapMany(
                 ProductCardNormalizer::normalize($cards)
             );
@@ -100,6 +102,8 @@ final  class Parser implements ParserContract, AuthenticationContract
             );
 
             $description = trim(pq('short_info')->text());
+
+            $this->logger->info("Complete parse product: $product->title");
             return ProductDataAggregator::aggregate($product, $meta, $description, $images, $specifications);
 
         } catch (Throwable $e) {
