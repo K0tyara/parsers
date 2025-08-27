@@ -26,7 +26,7 @@ readonly class FileLogProvider implements LogContract
     {
         FileWriter::appendLine(
             $this->path,
-            $this->formattedMessage('info', $message)
+            $this->formattedMessage('Info', $message)
         );
     }
 
@@ -38,7 +38,7 @@ readonly class FileLogProvider implements LogContract
 
         FileWriter::appendLine(
             $this->path,
-            $this->formattedMessage('error', $exception));
+            $this->formattedMessage('Error', $exception));
     }
 
     private function formattedMessage(string $level, string $message): string

@@ -5,6 +5,7 @@ namespace App\Factories;
 use App\Builders\TechnoRezefBuilder;
 use App\Enums\ParserList;
 use App\Services\ParserContainer;
+use LogicException;
 
 final readonly class ParserFactory
 {
@@ -12,7 +13,7 @@ final readonly class ParserFactory
     {
         return match ($parser) {
             ParserList::TechnoRezef => TechnoRezefBuilder::build(),
-            default => null
+            default => throw new LogicException("Builder for parser \"$parser->value\" not exist.")
         };
     }
 }
