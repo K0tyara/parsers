@@ -23,7 +23,7 @@ class XamlConvector implements XamlConvectorContract
             }
             foreach ($product as $prop => $value) {
                 if (!empty($value)) {
-                    $p->addChild($prop, $value);
+                    $p->addChild($prop,  htmlspecialchars($value, ENT_QUOTES | ENT_XML1, 'UTF-8'));
                 }
             }
         }
