@@ -11,9 +11,14 @@ require_once 'vendor/autoload.php';
 $dotenv = Dotenv::createImmutable(base_path());
 $dotenv->load();
 
-$parserName = ParserList::TechnoRezef;
+$args = getopt("", ["name::"]);
 
-$mainLog = LogFactory::console('main');
+if (!isset($args['name'])) {
+    throw  new LogicException("Argument --name is required");
+}
+
+$parserName = ParserList::fromValue($args['name']);
+$mainLog = LogFactory::console("main-$parserName->value");
 
 try {
     $container = ParserFactory::make($parserName);
@@ -32,4 +37,5 @@ try {
 
 } catch (Throwable $ex) {
     $mainLog->error($ex);
+    throw  $ex;
 }
