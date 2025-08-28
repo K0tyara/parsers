@@ -14,7 +14,9 @@ class ProductCardNormalizer
             $title = $element->find('.card__media a')->attr('aria-label');
 
             $status = trim($element->find('[data-inventory-level]')->attr('data-inventory-level'));
-
+            if (!$status) {
+                $status = trim($element->find('[style*=data-inventory-level]')->text());
+            }
             $imageData = $element->find('img[data-srcset]')->attr('data-srcset');
 
             $images = array_map(
