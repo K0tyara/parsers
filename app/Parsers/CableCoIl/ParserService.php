@@ -18,10 +18,11 @@ class ParserService extends ParserServiceBase
     protected function parse(): ProductContainerContract
     {
         $categories = $this->parser->parseMainPage();
-
+        $categories = array_slice($categories, 0, 1);
         foreach ($categories as $href => $name) {
 
             $page = new PageDTO(1, $href);
+
 
             do {
                 $cards = $this->parser->parseProductsCards($page->getNextPageUrl());
@@ -30,9 +31,11 @@ class ParserService extends ParserServiceBase
                     if ($product = $this->parser->parseProduct($card)) {
                         $this->addProduct($product);
                     }
-
+                    break;
                     $this->sleepManager->sleepAfterParseProduct();
                 }
+
+                break;
             } while ($page = $this->parser->getNextPage($page));
         }
 

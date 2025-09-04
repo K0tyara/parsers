@@ -23,17 +23,23 @@ class XamlConvector implements XamlConvectorContract
             }
             foreach ($product as $prop => $value) {
                 if (!empty($value)) {
-                    $p->addChild($prop,  htmlspecialchars($value, ENT_QUOTES | ENT_XML1, 'UTF-8'));
+                    $p->addChild($prop,  $value);
                 }
             }
         }
 
-        $dom = new DOMDocument('1.0', 'UTF-8');
-        $dom->preserveWhiteSpace = false;
-        $dom->formatOutput = true;
-        $dom->loadXML($xaml->asXML());
 
-        $xml_string = $dom->saveXML();
-        return preg_replace('/^  |\G  /m', '    ', $xml_string);
+        $dom = dom_import_simplexml($xaml)->ownerDocument;
+        $dom->encoding = 'UTF-8';
+        $dom->formatOutput = true;
+
+        return $dom->saveXML();
+
+//        $dom = new DOMDocument('1.0', 'UTF-8');
+//        $dom->preserveWhiteSpace = false;
+//        $dom->formatOutput = true;
+//        $dom->loadXML($xaml->asXML());
+//        $xml_string = $dom->saveXML();
+//        return preg_replace('/^  |\G  /m', '    ', $xml_string);
     }
 }

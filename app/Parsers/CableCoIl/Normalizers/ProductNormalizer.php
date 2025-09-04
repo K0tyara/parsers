@@ -30,8 +30,8 @@ final readonly class ProductNormalizer
             'code' => $code,
             'vendor' => $vendor,
             'pdf' => $pdf,
-            'shortDescription' => $shortDescription,
-            'fullDescription' => $fullDescription
+            'shortDescription' => json_encode($shortDescription, JSON_UNESCAPED_UNICODE),
+            'fullDescription' => json_encode($fullDescription, JSON_UNESCAPED_UNICODE)
         ];
     }
 }

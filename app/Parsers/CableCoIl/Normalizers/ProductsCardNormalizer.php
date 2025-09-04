@@ -16,8 +16,8 @@ final readonly class ProductsCardNormalizer
             $categories = trim($element->attr('ee_list_category'));
             $cards[] = new ProductCardDTO(
                 CableCoIl::ORIGIN . $element->attr('href'),
-                trim($element->attr('ee_list_itemname')),
-                explode('/', $categories),
+                json_encode(trim($element->attr('ee_list_itemname')), JSON_UNESCAPED_UNICODE),
+                explode('/', json_encode($categories, JSON_UNESCAPED_UNICODE)),
                 trim($element->attr('ee_list_itemprice')),
             );
         }

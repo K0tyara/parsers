@@ -3,9 +3,9 @@
 namespace App\Builders;
 
 use App\Enums\ParserList;
+use App\Parsers\CableCoIl\Formatters\XamlFormatter;
 use App\Parsers\CableCoIl\Parser;
 use App\Parsers\CableCoIl\ParserService;
-use App\Parsers\Formatters\XamlFormatter;
 use App\Parsers\TechnoRezef\SaveHandler;
 use App\Services\ParserContainer;
 use App\Services\ParserTimeSleepContainer;

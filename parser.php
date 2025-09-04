@@ -17,6 +17,7 @@ $dotenv->load();
 //}
 //
 //$parserName = ParserList::fromValue($args['name']);
+
 $parserName = ParserList::CableCoIl;
 $mainLog = LogFactory::console("main-$parserName->value");
 

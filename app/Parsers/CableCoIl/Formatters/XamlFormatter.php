@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Parsers\Formatters;
+namespace App\Parsers\CableCoIl\Formatters;
 
 use App\Formatters\ImageFormatter;
 use App\Parsers\CableCoIl\DTO\ProductDTO;

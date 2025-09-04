@@ -30,15 +30,15 @@ final readonly class XamlFormatter implements FormatterContract
 
             $result[] = [
                 'url' => $item->link,
-                'productName' => $item->title,
+                'productName' => htmlspecialchars($item->title, ENT_QUOTES | ENT_XML1, 'UTF-8'),
                 'ManufacturerProductCode' => $item->code,
                 'DealerPrice' => $item->price,
                 'Inventorylevel' => $item->status,
 //                'productCode' => ' ',
-                'Warranty' => $item->extra['אחריות'] ?? ' ',
+                'Warranty' => $item->extra['אחריות'] ? htmlspecialchars($item->extra['אחריות'], ENT_QUOTES | ENT_XML1, 'UTF-8') : ' ',
                 'Weight' => $item->extra['משקל'] ?? ' ',
 //                'Category Name' => ' ',
-                'image' => ImageFormatter::format($item->images),
+                'image' => htmlspecialchars(ImageFormatter::format($item->images), ENT_QUOTES | ENT_XML1, 'UTF-8')
             ];
         }
 
