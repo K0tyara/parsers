@@ -10,15 +10,14 @@ require_once 'vendor/autoload.php';
 $dotenv = Dotenv::createImmutable(base_path());
 $dotenv->load();
 
-//$args = getopt("", ["name::"]);
-//
-//if (!isset($args['name'])) {
-//    throw  new LogicException("Argument --name is required");
-//}
-//
-//$parserName = ParserList::fromValue($args['name']);
+$args = getopt("", ["name::"]);
 
-$parserName = ParserList::CableCoIl;
+if (!isset($args['name'])) {
+    throw  new LogicException("Argument --name is required");
+}
+
+$parserName = ParserList::fromValue($args['name']);
+
 $mainLog = LogFactory::console("main-$parserName->value");
 
 try {
