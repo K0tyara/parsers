@@ -11,7 +11,7 @@ readonly abstract class Product
     public string $price;
     public string $status;
     public string $html;
-    public string $categories;
+    public array $categories;
     public array $images;
     public array $extra;
 

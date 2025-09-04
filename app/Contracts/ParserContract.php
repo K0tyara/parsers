@@ -10,18 +10,22 @@ use Core\Contracts\Formatters\FormatterContract;
 interface ParserContract
 {
     /**
-     * @param Page $page
-     * @return ProductCard[]
+     * @param ?Page $page
+     * @return mixed
      */
-    public function parseMainPage(Page $page): array;
+    public function parseMainPage(?Page $page = null): array;
 
     public function parseProduct(ProductCard $product): ?Product;
+
+    /**
+     * @param string $href
+     * @return ProductCard[]
+     */
+    public function parseProductsCards(string $href): array;
 
     public function getDefaultPage(): Page;
 
     public function getNextPage(Page $page): ?Page;
-
-    public function getFormatter(): FormatterContract;
 
     public function isLastPage(): bool;
 }

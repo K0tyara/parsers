@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\TechnoRezef\DTO\PageDataDTO;
+use App\Parsers\TechnoRezef\DTO\PageDataDTO;
 use Core\Contracts\Storage\StorageContract;
 use Core\Facades\FileReader;
 use Core\Facades\FileWriter;

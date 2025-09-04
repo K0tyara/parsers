@@ -3,20 +3,19 @@
 namespace App\Builders;
 
 use App\Enums\ParserList;
-use App\Parsers\TechnoRezef\Formatters\XamlFormatter;
-use App\Parsers\TechnoRezef\Parser;
-use App\Parsers\TechnoRezef\ParserService;
+use App\Parsers\CableCoIl\Parser;
+use App\Parsers\CableCoIl\ParserService;
+use App\Parsers\Formatters\XamlFormatter;
 use App\Parsers\TechnoRezef\SaveHandler;
 use App\Services\ParserContainer;
 use App\Services\ParserTimeSleepContainer;
 use Core\Log\Factory\LogFactory;
 
-final readonly class TechnoRezefBuilder
+final readonly class CableCoIlBuilder
 {
-
     public static function build(): ParserContainer
     {
-        $parserName = ParserList::TechnoRezef;
+        $parserName = ParserList::CableCoIl;
         $parser = new Parser(
             LogFactory::console($parserName->value)
         );
@@ -26,8 +25,9 @@ final readonly class TechnoRezefBuilder
         $service = new ParserService(
             $parserName->value,
             $parser,
-            $sleepContainer,
+            $sleepContainer
         );
+
         return new ParserContainer(
             $parserName,
             $service,

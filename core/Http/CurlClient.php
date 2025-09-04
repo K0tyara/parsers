@@ -34,6 +34,8 @@ class CurlClient implements HttpClientContract
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         }
 
+        curl_setopt($ch, CURLOPT_ENCODING, '');
+
         $response = curl_exec($ch);
         $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
