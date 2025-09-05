@@ -33,7 +33,9 @@ class XamlConvector implements XamlConvectorContract
         $dom->encoding = 'UTF-8';
         $dom->formatOutput = true;
 
-        return $dom->saveXML();
+        $xaml =  $dom->saveXML();
+        $xaml = preg_replace('/^  |\G  /m', '    ', $xaml);
+        return str_replace('&', '', $xaml);
 
 //        $dom = new DOMDocument('1.0', 'UTF-8');
 //        $dom->preserveWhiteSpace = false;
