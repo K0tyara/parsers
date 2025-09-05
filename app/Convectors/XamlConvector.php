@@ -23,7 +23,7 @@ class XamlConvector implements XamlConvectorContract
             }
             foreach ($product as $prop => $value) {
                 if (!empty($value)) {
-                    $p->addChild($prop,  $value);
+                    $p->addChild($prop, $value);
                 }
             }
         }
@@ -33,9 +33,8 @@ class XamlConvector implements XamlConvectorContract
         $dom->encoding = 'UTF-8';
         $dom->formatOutput = true;
 
-        $xaml =  $dom->saveXML();
-        $xaml = preg_replace('/^  |\G  /m', '    ', $xaml);
-        return str_replace('&', '', $xaml);
+        $xaml = $dom->saveXML();
+        return preg_replace(['/^  |\G  /m', '/&(?![a-zA-Z#0-9]+;)/'], ['    ', ''], $xaml);
 
 //        $dom = new DOMDocument('1.0', 'UTF-8');
 //        $dom->preserveWhiteSpace = false;
