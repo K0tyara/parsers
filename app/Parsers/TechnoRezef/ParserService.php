@@ -55,7 +55,9 @@ class ParserService extends ParserServiceBase
 
             $page = $this->parser->getNextPage($page);
 
-            $this->snapshotService->createOrUpdateSnapshot($page);
+            if ($this->withSnapshot) {
+                $this->snapshotService->createOrUpdateSnapshot($page);
+            }
 
         } while ($page != null);
 
